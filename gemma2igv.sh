@@ -110,9 +110,9 @@ p_idx=$(head -1 ${i} | tr '\t' '\n' | cat -n | awk -v pat="${p}" '$0 ~ pat{print
 #echo $chr_idx $rs_idx $ps_idx $p_idx
 
 if $RS ; then
-   tail -n +2 ${i} | cut -f $rs_idx,$p_idx | sed -r 's/([[:alnum:]]+)-([[:digit:]]+)\t/\1\t\2\t\1-\2\t/' | sort -k1,1 -k2,2 >> ${o}
+   tail -n +2 ${i} | cut -f $rs_idx,$p_idx | sed -r 's/([[:alnum:]]+)-([[:digit:]]+)\t/\1\t\2\t\1-\2\t/' | sort -k1,1 -k2,2n >> ${o}
 else
-   tail -n +2 ${i} | cut -f $chr_idx,$ps_idx,$rs_idx,$p_idx | sort  -k1,1 -k2,2 >> ${o}
+   tail -n +2 ${i} | cut -f $chr_idx,$ps_idx,$rs_idx,$p_idx | sort  -k1,1 -k2,2n >> ${o}
 fi
 
 echo -e "\nOutput file is: ${o}."
